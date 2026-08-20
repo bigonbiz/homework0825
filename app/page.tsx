@@ -9,22 +9,25 @@ type Signal = {
 };
 
 const signals: Signal[] = [
-  { id:1, name:"피지컬 AI", field:"AI", type:"정책+시장", score:92, change:18, policy:96, market:91, gap:84, urgency:95, stage:"사업 후보", summary:"제조·로봇·지역산업 실증 수요가 정책 투자와 동시에 확대되고 있습니다.", evidence:["국가 AI 정책 우선순위 상승", "지역 주도 실증사업 확대", "제조·로봇 민간투자 증가"], direction:"지역 주력산업 연계 피지컬 AI 실증·확산 사업", color:"#2256ff" },
-  { id:2, name:"에이전틱 AI", field:"AI", type:"기술+시장", score:89, change:24, policy:91, market:94, gap:76, urgency:93, stage:"집중 관찰", summary:"자율형 AI 에이전트의 산업 적용이 빨라지며 신뢰성·상호운용성 이슈가 부상합니다.", evidence:["정책 문서 언급량 급증", "글로벌 제품 출시 가속", "에이전트 표준 논의 확대"], direction:"신뢰 가능한 에이전틱 AI 핵심기술 및 산업 적용", color:"#8a5cf6" },
-  { id:3, name:"AI 보안", field:"정보보호", type:"정책+수요", score:86, change:11, policy:94, market:88, gap:70, urgency:94, stage:"사업 후보", summary:"생성형 AI 확산으로 모델·데이터·에이전트 전주기 보안 수요가 빠르게 커지고 있습니다.", evidence:["AI 기본법 대응 수요", "기업 보안사고 위험 증가", "AI 공급망 검증 필요"], direction:"AI 전주기 안전성 검증 및 보안 대응 기술개발", color:"#e4962c" },
-  { id:4, name:"온디바이스 AI", field:"반도체", type:"기술+시장", score:82, change:9, policy:83, market:90, gap:78, urgency:76, stage:"집중 관찰", summary:"저전력 추론과 개인정보 보호 요구가 디바이스 내 AI 수요를 견인합니다.", evidence:["AI 반도체 정책 연계", "엣지 추론 시장 성장", "경량화 기술격차 존재"], direction:"초저전력 온디바이스 AI SW·반도체 공동최적화", color:"#26a77a" },
-  { id:5, name:"양자 네트워크", field:"네트워크", type:"정책+기술", score:78, change:7, policy:89, market:61, gap:92, urgency:70, stage:"기술 축적", summary:"시장 형성 전 단계이나 국가안보와 기술주권 관점의 장기 축적 필요성이 높습니다.", evidence:["국가전략기술 지정", "선도국 투자 지속", "국내 핵심부품 격차"], direction:"양자 네트워크 핵심부품·검증 인프라 기술축적", color:"#17a6b5" },
-  { id:6, name:"AI 데이터센터 효율화", field:"컴퓨팅", type:"시장+수요", score:80, change:15, policy:86, market:88, gap:64, urgency:83, stage:"문제 정의", summary:"AI 컴퓨팅 확대로 전력·냉각·운영 최적화가 핵심 산업 문제로 전환되고 있습니다.", evidence:["AI 컴퓨팅 인프라 확충", "전력 수요 급증", "국산 운영기술 필요"], direction:"고효율 AI 데이터센터 에너지·운영 최적화", color:"#497594" },
-  { id:7, name:"디지털 포용 AI", field:"디지털사회", type:"정책+사회", score:74, change:6, policy:88, market:58, gap:67, urgency:82, stage:"수요 발굴", summary:"취약계층의 AI 접근성과 안전한 활용을 위한 공공기술 수요가 구체화되고 있습니다.", evidence:["AI 접근권 정책 강화", "고령층 디지털 격차", "공공서비스 AX 확대"], direction:"취약계층 맞춤형 포용 AI 서비스 및 검증", color:"#d36b7d" },
-  { id:8, name:"차세대 6G 네트워크", field:"네트워크", type:"기술+정책", score:76, change:5, policy:84, market:63, gap:88, urgency:69, stage:"기술 축적", summary:"표준 선점과 핵심장비 경쟁력 확보를 위한 중장기 기술축적 구간입니다.", evidence:["국제표준 선점 경쟁", "핵심장비 기술격차", "위성·지상망 통합 요구"], direction:"6G 핵심기술·국제표준 연계 기술개발", color:"#6f7bd8" },
+  { id:1, name:"에이전틱 AI", field:"인공지능", type:"기술+시장", score:89, change:24, policy:91, market:94, gap:76, urgency:93, stage:"집중 관찰", summary:"자율형 AI 에이전트의 산업 적용이 빨라지며 신뢰성·상호운용성 이슈가 부상합니다.", evidence:["정책 문서 언급량 급증", "글로벌 제품 출시 가속", "에이전트 표준 논의 확대"], direction:"신뢰 가능한 에이전틱 AI 핵심기술 및 산업 적용", color:"#2256ff" },
+  { id:2, name:"온디바이스 AI 반도체", field:"AI반도체", type:"기술+시장", score:84, change:13, policy:86, market:91, gap:80, urgency:78, stage:"사업 후보", summary:"저전력 추론과 데이터 주권 요구가 AI 반도체·SW 공동최적화 수요를 키우고 있습니다.", evidence:["AI 반도체 정책 연계", "엣지 추론 시장 성장", "경량화 기술격차 존재"], direction:"초저전력 온디바이스 AI 반도체·SW 공동최적화", color:"#26a77a" },
+  { id:3, name:"피지컬 AI", field:"피지컬AI", type:"정책+시장", score:92, change:18, policy:96, market:91, gap:84, urgency:95, stage:"사업 후보", summary:"제조·로봇·지역산업 실증 수요가 정책 투자와 동시에 확대되고 있습니다.", evidence:["국가 AI 정책 우선순위 상승", "지역 주도 실증사업 확대", "제조·로봇 민간투자 증가"], direction:"지역 주력산업 연계 피지컬 AI 실증·확산 사업", color:"#8a5cf6" },
+  { id:4, name:"양자 네트워크", field:"양자", type:"정책+기술", score:78, change:7, policy:89, market:61, gap:92, urgency:70, stage:"기술 축적", summary:"시장 형성 전 단계이나 국가안보와 기술주권 관점의 장기 축적 필요성이 높습니다.", evidence:["국가전략기술 지정", "선도국 투자 지속", "국내 핵심부품 격차"], direction:"양자 네트워크 핵심부품·검증 인프라 기술축적", color:"#17a6b5" },
+  { id:5, name:"AI 네이티브 SW", field:"SW", type:"기술+수요", score:81, change:14, policy:82, market:87, gap:73, urgency:84, stage:"문제 정의", summary:"개발·운영 전주기에 AI가 결합되며 공공·산업 SW 생산성 혁신 요구가 커지고 있습니다.", evidence:["SW 공급망 자동화 수요", "AI 개발도구 확산", "공공 정보화 AX 전환"], direction:"AI 네이티브 SW 개발·검증 플랫폼 기술개발", color:"#497594" },
+  { id:6, name:"6G 위성통신", field:"통신/전파위성", type:"기술+정책", score:79, change:8, policy:86, market:66, gap:88, urgency:73, stage:"기술 축적", summary:"지상망·비지상망 통합과 주파수 경쟁이 차세대 통신 기획 이슈로 부상합니다.", evidence:["국제표준 선점 경쟁", "위성·지상망 통합 요구", "핵심장비 기술격차"], direction:"6G·저궤도 위성 연계 통신/전파 핵심기술", color:"#6f7bd8" },
+  { id:7, name:"생성형 미디어 콘텐츠", field:"미디어/콘텐츠", type:"시장+사회", score:77, change:16, policy:75, market:89, gap:68, urgency:78, stage:"수요 발굴", summary:"생성형 AI 기반 제작·유통 혁신과 저작권·신뢰성 대응 기술 수요가 동시에 확대됩니다.", evidence:["콘텐츠 제작 자동화 확산", "저작권·출처 검증 이슈", "K-콘텐츠 글로벌 경쟁"], direction:"신뢰 가능한 생성형 미디어 제작·검증 기술개발", color:"#d36b7d" },
+  { id:8, name:"AI 보안", field:"정보보안", type:"정책+수요", score:86, change:11, policy:94, market:88, gap:70, urgency:94, stage:"사업 후보", summary:"생성형 AI 확산으로 모델·데이터·에이전트 전주기 보안 수요가 빠르게 커지고 있습니다.", evidence:["AI 기본법 대응 수요", "기업 보안사고 위험 증가", "AI 공급망 검증 필요"], direction:"AI 전주기 안전성 검증 및 보안 대응 기술개발", color:"#e4962c" },
+  { id:9, name:"공공 AX 디지털융합", field:"디지털융합", type:"정책+사회", score:75, change:9, policy:88, market:62, gap:67, urgency:82, stage:"수요 발굴", summary:"공공서비스와 산업현장의 디지털 융합 전환이 실증·확산형 R&D 수요로 구체화되고 있습니다.", evidence:["공공서비스 AX 확대", "지역 현안 디지털 전환", "수요처 참여형 실증 필요"], direction:"공공·지역 문제해결형 디지털융합 실증 사업", color:"#2f8f8d" },
 ];
 
-const fields = ["전체", "AI", "정보보호", "반도체", "네트워크", "컴퓨팅", "디지털사회"];
+const fields = ["전체", "인공지능", "AI반도체", "피지컬AI", "양자", "SW", "통신/전파위성", "미디어/콘텐츠", "정보보안", "디지털융합"];
 const trendData = [
   { keyword:"피지컬 AI", values:[31,38,42,55,69,82], change:164, color:"#2256ff" },
   { keyword:"에이전틱 AI", values:[18,24,39,53,71,88], change:389, color:"#8a5cf6" },
+  { keyword:"AI 반도체", values:[29,34,41,48,57,72], change:148, color:"#26a77a" },
+  { keyword:"6G 위성통신", values:[24,29,33,43,52,64], change:167, color:"#6f7bd8" },
   { keyword:"AI 보안", values:[42,47,51,60,67,76], change:81, color:"#e4962c" },
-  { keyword:"온디바이스 AI", values:[36,43,48,52,61,68], change:89, color:"#26a77a" },
+  { keyword:"생성형 미디어", values:[22,31,38,44,58,70], change:218, color:"#d36b7d" },
 ];
 
 function Radar({ signal }: { signal: Signal }) {
@@ -61,7 +64,7 @@ export default function Home() {
     <main>
       <header className="topbar">
         <a className="brand" href="#top" aria-label="R&D Signal Radar 홈"><span className="brand-mark">R</span><span>R&amp;D Signal Radar</span></a>
-        <nav aria-label="주요 메뉴"><a className="active" href="#radar">신호 레이더</a><a href="#trends">키워드 트렌드</a><a href="#generator">기획 후보 생성</a></nav>
+        <nav aria-label="주요 메뉴"><a className="active" href="#radar">① 신호 레이더</a><a href="#trends">② 키워드 트렌드</a><a href="#generator">③ 기획 후보 생성</a></nav>
         <button className="outline-button">데이터 기준 <strong>2026.08</strong></button>
       </header>
 
@@ -72,22 +75,10 @@ export default function Home() {
         <div className="hero-actions"><a className="primary-button" href="#radar">레이더 살펴보기 <span>↗</span></a><span className="update-note"><i /> 공개 데이터 기반 · 최근 업데이트 8월 18일</span></div>
       </section>
 
-      <section className="trends-section" id="trends">
-        <div className="section-heading"><div><span className="kicker">KEYWORD MOMENTUM</span><h2>키워드 트렌드</h2></div><p>최근 6개월 정책·사업·시장 문서의 상대적 관심도입니다.<br />현재는 동작 검증을 위한 샘플 지수입니다.</p></div>
-        <div className="trend-layout">
-          <div className="trend-chart">
-            <div className="chart-head"><span>관심도 지수</span><div><i /> 3월 <i /> 8월</div></div>
-            {trendData.map(row => <div className="trend-row" key={row.keyword}><strong>{row.keyword}</strong><div className="spark-bars">{row.values.map((v,i)=><i key={i} style={{height:`${v}%`,background:row.color,opacity:.35+i*.12}} />)}</div><b>+{row.change}%</b></div>)}
-            <div className="month-axis"><span>3월</span><span>4월</span><span>5월</span><span>6월</span><span>7월</span><span>8월</span></div>
-          </div>
-          <aside className="trend-summary"><span className="mini-label">FASTEST RISING</span><strong>에이전틱 AI</strong><em>+389%</em><p>정책 언급과 민간 제품 출시가 동시에 증가했습니다. 신뢰성·상호운용성·평가체계를 중심으로 신규 기획 가능성을 검토할 시점입니다.</p><button onClick={()=>{setSelectedId(2);document.getElementById("generator")?.scrollIntoView()}}>이 신호로 기획하기 →</button></aside>
-        </div>
-      </section>
-
       <section className="overview" id="radar">
-        <div className="section-heading"><div><span className="kicker">SIGNAL OVERVIEW</span><h2>전략 신호 레이더</h2></div><p>초기 버전의 점수와 근거는 화면 구조 검증을 위한 샘플입니다.<br />실제 활용 전 데이터 출처와 산식 검증이 필요합니다.</p></div>
+        <div className="section-heading"><div><span className="kicker">01 SIGNAL OVERVIEW</span><h2>① 신호 레이더</h2></div><p>초기 버전의 점수와 근거는 화면 구조 검증을 위한 샘플입니다.<br />실제 활용 전 데이터 출처와 산식 검증이 필요합니다.</p></div>
         <div className="stat-strip">
-          <div><span>관측 신호</span><strong>48</strong><small>개</small></div><div><span>이번 달 신규</span><strong>12</strong><small>개</small></div><div><span>상승 신호</span><strong>31</strong><small>개</small></div><div><span>기획 검토 후보</span><strong>8</strong><small>개</small></div>
+          <div><span>관측 분야</span><strong>9</strong><small>개</small></div><div><span>이번 달 신규</span><strong>12</strong><small>개</small></div><div><span>상승 신호</span><strong>31</strong><small>개</small></div><div><span>기획 검토 후보</span><strong>9</strong><small>개</small></div>
         </div>
         <div className="radar-panel">
           <div className="panel-copy"><span className="status-pill">{selected.stage}</span><h3>{selected.name}</h3><p>{selected.summary}</p><Radar signal={selected} /></div>
@@ -95,8 +86,20 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="trends-section" id="trends">
+        <div className="section-heading"><div><span className="kicker">02 KEYWORD MOMENTUM</span><h2>② 키워드 트렌드</h2></div><p>최근 6개월 정책·사업·시장 문서의 상대적 관심도입니다.<br />현재는 동작 검증을 위한 샘플 지수입니다.</p></div>
+        <div className="trend-layout">
+          <div className="trend-chart">
+            <div className="chart-head"><span>관심도 지수</span><div><i /> 3월 <i /> 8월</div></div>
+            {trendData.map(row => <div className="trend-row" key={row.keyword}><strong>{row.keyword}</strong><div className="spark-bars">{row.values.map((v,i)=><i key={i} style={{height:`${v}%`,background:row.color,opacity:.35+i*.12}} />)}</div><b>+{row.change}%</b></div>)}
+            <div className="month-axis"><span>3월</span><span>4월</span><span>5월</span><span>6월</span><span>7월</span><span>8월</span></div>
+          </div>
+          <aside className="trend-summary"><span className="mini-label">FASTEST RISING</span><strong>에이전틱 AI</strong><em>+389%</em><p>정책 언급과 민간 제품 출시가 동시에 증가했습니다. 신뢰성·상호운용성·평가체계를 중심으로 신규 기획 가능성을 검토할 시점입니다.</p><button onClick={()=>{setSelectedId(1);document.getElementById("generator")?.scrollIntoView()}}>이 신호로 기획하기 →</button></aside>
+        </div>
+      </section>
+
       <section className="explorer" id="signals">
-        <div className="section-heading"><div><span className="kicker">EXPLORE SIGNALS</span><h2>신호 탐색</h2></div><label className="search"><span>⌕</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="기술·이슈 검색" aria-label="기술·이슈 검색" /></label></div>
+        <div className="section-heading"><div><span className="kicker">FIELD TAXONOMY</span><h2>분야별 신호 탐색</h2></div><label className="search"><span>⌕</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="기술·이슈 검색" aria-label="기술·이슈 검색" /></label></div>
         <div className="filter-row" role="group" aria-label="기술 분야 필터">{fields.map(item => <button className={field === item ? "selected" : ""} onClick={()=>setField(item)} key={item}>{item}</button>)}</div>
         <div className="table-wrap">
           <table><thead><tr><th>신호</th><th>분야</th><th>신호 유형</th><th>종합점수</th><th>전월 대비</th><th>단계</th><th><span className="sr-only">비교</span></th></tr></thead>
@@ -111,7 +114,7 @@ export default function Home() {
       </section>
 
       <section className="generator" id="generator">
-        <div className="section-heading"><div><span className="kicker">IDEA GENERATOR</span><h2>기획 후보 자동 생성</h2></div><p>선택 신호와 현장 문제를 결합해<br />사전기획 논의용 후보를 만듭니다.</p></div>
+        <div className="section-heading"><div><span className="kicker">03 IDEA GENERATOR</span><h2>③ 기획 후보 자동 생성</h2></div><p>선택 신호와 현장 문제를 결합해<br />사전기획 논의용 후보를 만듭니다.</p></div>
         <div className="generator-grid">
           <div className="generator-form">
             <label>전략 신호<select value={selectedId} onChange={e=>{setSelectedId(Number(e.target.value));setGenerated(false)}}>{signals.map(s=><option key={s.id} value={s.id}>{s.name} · {s.score}점</option>)}</select></label>
