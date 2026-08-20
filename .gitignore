@@ -39,3 +39,12 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
+
+# local document processing workspace
+/local-docs/inbox/*
+/local-docs/originals/*
+/local-docs/parsed/*
+/local-docs/index.json
+!/local-docs/inbox/.gitkeep
+!/local-docs/originals/.gitkeep
+!/local-docs/parsed/.gitkeep

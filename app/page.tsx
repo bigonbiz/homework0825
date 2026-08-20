@@ -87,6 +87,29 @@ export default function Home() {
             <div><span>데이터 버전</span><strong>{metadata.version}</strong><small>파일</small></div>
           </div>
         </div>
+        <div className="local-workflow">
+          <div className="local-paths">
+            <span className="mini-label">LOCAL STORAGE</span>
+            <h3>로컬 자료 저장 위치</h3>
+            <dl>
+              <div><dt>파일 투입</dt><dd>{metadata.inboxPath}</dd></div>
+              <div><dt>원본 보관</dt><dd>{metadata.originalsPath}</dd></div>
+              <div><dt>텍스트 저장</dt><dd>{metadata.parsedPath}</dd></div>
+              <div><dt>문서 목록</dt><dd>{metadata.indexPath}</dd></div>
+            </dl>
+          </div>
+          <div className="workflow-steps">
+            <span className="mini-label">MANUAL INGEST</span>
+            <h3>수동 업데이트 절차</h3>
+            <ol>
+              <li><span>01</span><p>자료 파일을 로컬 `inbox` 폴더에 넣습니다.</p></li>
+              <li><span>02</span><p>로컬 파싱 스크립트를 실행해 원본과 추출 텍스트를 저장합니다.</p></li>
+              <li><span>03</span><p>공개 가능한 요약·키워드·분야만 검토해 웹앱 데이터에 반영합니다.</p></li>
+            </ol>
+            <div className="format-row"><strong>텍스트 추출</strong>{metadata.supportedLocalParsing.map(item => <b key={item}>{item}</b>)}</div>
+            <div className="format-row muted"><strong>원본 보관 우선</strong>{metadata.storedOnlyFormats.map(item => <b key={item}>{item}</b>)}</div>
+          </div>
+        </div>
         <div className="source-table">
           <div className="source-table-head"><span>자료 출처별 보유 현황</span><strong>총 {totalRecords}건 색인</strong></div>
           <table><thead><tr><th>출처</th><th>자료유형</th><th>건수</th><th>갱신주기</th><th>상태</th></tr></thead><tbody>{sources.map(source => <tr key={source.name}><td>{source.name}</td><td>{source.type}</td><td><strong>{source.records}</strong>건</td><td>{source.updateCycle}</td><td><span>{source.status}</span></td></tr>)}</tbody></table>

@@ -4,10 +4,17 @@
     "version": "2026.08.v1",
     "lastUpdated": "2026-08-20",
     "updateCycle": "월 1회 정기 갱신 + 주요 정책 발표 시 수시 갱신",
-    "storage": "GitHub 저장소의 data/radar-data.json 파일",
-    "collector": "담당자가 공개자료를 확인한 뒤 JSON 파일에 수동 반영",
-    "rawDocumentStorage": "현재 원문 파일은 저장하지 않고, 출처명·자료유형·건수·관측 신호만 저장",
-    "note": "현재 수치는 운영 설계를 위한 초기 샘플 데이터입니다. 실제 운영 시 원문 링크와 수집일을 함께 축적하는 구조로 확장합니다."
+    "storage": "공개 요약 데이터는 GitHub의 data/radar-data.json, 원본·파싱 텍스트는 로컬 C:\\OpenAI\\과제\\local-docs",
+    "collector": "담당자가 local-docs\\inbox에 파일을 넣고 scripts\\ingest-local-docs.ps1을 실행한 뒤 공개 가능한 요약만 JSON에 반영",
+    "rawDocumentStorage": "원본 파일은 local-docs\\originals, 추출 텍스트는 local-docs\\parsed, 문서 목록은 local-docs\\index.json에 저장",
+    "note": "현재 출처별 건수는 운영 설계를 위한 초기 샘플 데이터입니다. 로컬 파싱 결과 중 공개 가능한 제목·기관·날짜·요약·키워드만 검토 후 웹앱 데이터로 승격합니다.",
+    "localStorageRoot": "C:\\OpenAI\\과제\\local-docs",
+    "inboxPath": "C:\\OpenAI\\과제\\local-docs\\inbox",
+    "originalsPath": "C:\\OpenAI\\과제\\local-docs\\originals",
+    "parsedPath": "C:\\OpenAI\\과제\\local-docs\\parsed",
+    "indexPath": "C:\\OpenAI\\과제\\local-docs\\index.json",
+    "supportedLocalParsing": ["TXT", "MD", "CSV", "JSON", "XML", "HTML", "DOCX", "HWPX"],
+    "storedOnlyFormats": ["PDF", "PNG", "JPG", "JPEG", "GIF", "WEBP"]
   },
   "fields": [
     "인공지능",
