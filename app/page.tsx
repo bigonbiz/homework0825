@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import radarData from "../data/radar-data.json";
 
 type Signal = {
   id: number; name: string; field: string; type: string; score: number; change: number;
@@ -8,27 +9,15 @@ type Signal = {
   evidence: string[]; direction: string; color: string;
 };
 
-const signals: Signal[] = [
-  { id:1, name:"에이전틱 AI", field:"인공지능", type:"기술+시장", score:89, change:24, policy:91, market:94, gap:76, urgency:93, stage:"집중 관찰", summary:"자율형 AI 에이전트의 산업 적용이 빨라지며 신뢰성·상호운용성 이슈가 부상합니다.", evidence:["정책 문서 언급량 급증", "글로벌 제품 출시 가속", "에이전트 표준 논의 확대"], direction:"신뢰 가능한 에이전틱 AI 핵심기술 및 산업 적용", color:"#2256ff" },
-  { id:2, name:"온디바이스 AI 반도체", field:"AI반도체", type:"기술+시장", score:84, change:13, policy:86, market:91, gap:80, urgency:78, stage:"사업 후보", summary:"저전력 추론과 데이터 주권 요구가 AI 반도체·SW 공동최적화 수요를 키우고 있습니다.", evidence:["AI 반도체 정책 연계", "엣지 추론 시장 성장", "경량화 기술격차 존재"], direction:"초저전력 온디바이스 AI 반도체·SW 공동최적화", color:"#26a77a" },
-  { id:3, name:"피지컬 AI", field:"피지컬AI", type:"정책+시장", score:92, change:18, policy:96, market:91, gap:84, urgency:95, stage:"사업 후보", summary:"제조·로봇·지역산업 실증 수요가 정책 투자와 동시에 확대되고 있습니다.", evidence:["국가 AI 정책 우선순위 상승", "지역 주도 실증사업 확대", "제조·로봇 민간투자 증가"], direction:"지역 주력산업 연계 피지컬 AI 실증·확산 사업", color:"#8a5cf6" },
-  { id:4, name:"양자 네트워크", field:"양자", type:"정책+기술", score:78, change:7, policy:89, market:61, gap:92, urgency:70, stage:"기술 축적", summary:"시장 형성 전 단계이나 국가안보와 기술주권 관점의 장기 축적 필요성이 높습니다.", evidence:["국가전략기술 지정", "선도국 투자 지속", "국내 핵심부품 격차"], direction:"양자 네트워크 핵심부품·검증 인프라 기술축적", color:"#17a6b5" },
-  { id:5, name:"AI 네이티브 SW", field:"SW", type:"기술+수요", score:81, change:14, policy:82, market:87, gap:73, urgency:84, stage:"문제 정의", summary:"개발·운영 전주기에 AI가 결합되며 공공·산업 SW 생산성 혁신 요구가 커지고 있습니다.", evidence:["SW 공급망 자동화 수요", "AI 개발도구 확산", "공공 정보화 AX 전환"], direction:"AI 네이티브 SW 개발·검증 플랫폼 기술개발", color:"#497594" },
-  { id:6, name:"6G 위성통신", field:"통신/전파위성", type:"기술+정책", score:79, change:8, policy:86, market:66, gap:88, urgency:73, stage:"기술 축적", summary:"지상망·비지상망 통합과 주파수 경쟁이 차세대 통신 기획 이슈로 부상합니다.", evidence:["국제표준 선점 경쟁", "위성·지상망 통합 요구", "핵심장비 기술격차"], direction:"6G·저궤도 위성 연계 통신/전파 핵심기술", color:"#6f7bd8" },
-  { id:7, name:"생성형 미디어 콘텐츠", field:"미디어/콘텐츠", type:"시장+사회", score:77, change:16, policy:75, market:89, gap:68, urgency:78, stage:"수요 발굴", summary:"생성형 AI 기반 제작·유통 혁신과 저작권·신뢰성 대응 기술 수요가 동시에 확대됩니다.", evidence:["콘텐츠 제작 자동화 확산", "저작권·출처 검증 이슈", "K-콘텐츠 글로벌 경쟁"], direction:"신뢰 가능한 생성형 미디어 제작·검증 기술개발", color:"#d36b7d" },
-  { id:8, name:"AI 보안", field:"정보보안", type:"정책+수요", score:86, change:11, policy:94, market:88, gap:70, urgency:94, stage:"사업 후보", summary:"생성형 AI 확산으로 모델·데이터·에이전트 전주기 보안 수요가 빠르게 커지고 있습니다.", evidence:["AI 기본법 대응 수요", "기업 보안사고 위험 증가", "AI 공급망 검증 필요"], direction:"AI 전주기 안전성 검증 및 보안 대응 기술개발", color:"#e4962c" },
-  { id:9, name:"공공 AX 디지털융합", field:"디지털융합", type:"정책+사회", score:75, change:9, policy:88, market:62, gap:67, urgency:82, stage:"수요 발굴", summary:"공공서비스와 산업현장의 디지털 융합 전환이 실증·확산형 R&D 수요로 구체화되고 있습니다.", evidence:["공공서비스 AX 확대", "지역 현안 디지털 전환", "수요처 참여형 실증 필요"], direction:"공공·지역 문제해결형 디지털융합 실증 사업", color:"#2f8f8d" },
-];
+type Trend = { keyword: string; values: number[]; change: number; color: string };
+type SourceRecord = { name: string; type: string; records: number; updateCycle: string; status: string };
 
-const fields = ["전체", "인공지능", "AI반도체", "피지컬AI", "양자", "SW", "통신/전파위성", "미디어/콘텐츠", "정보보안", "디지털융합"];
-const trendData = [
-  { keyword:"피지컬 AI", values:[31,38,42,55,69,82], change:164, color:"#2256ff" },
-  { keyword:"에이전틱 AI", values:[18,24,39,53,71,88], change:389, color:"#8a5cf6" },
-  { keyword:"AI 반도체", values:[29,34,41,48,57,72], change:148, color:"#26a77a" },
-  { keyword:"6G 위성통신", values:[24,29,33,43,52,64], change:167, color:"#6f7bd8" },
-  { keyword:"AI 보안", values:[42,47,51,60,67,76], change:81, color:"#e4962c" },
-  { keyword:"생성형 미디어", values:[22,31,38,44,58,70], change:218, color:"#d36b7d" },
-];
+const signals = radarData.signals as Signal[];
+const fields = ["전체", ...radarData.fields];
+const trendData = radarData.trends as Trend[];
+const sources = radarData.sourceInventory as SourceRecord[];
+const metadata = radarData.metadata;
+const totalRecords = sources.reduce((sum, source) => sum + source.records, 0);
 
 function Radar({ signal }: { signal: Signal }) {
   const metrics = [["정책성", signal.policy], ["시장성", signal.market], ["기술격차", signal.gap], ["시급성", signal.urgency]];
@@ -64,21 +53,50 @@ export default function Home() {
     <main>
       <header className="topbar">
         <a className="brand" href="#top" aria-label="R&D Signal Radar 홈"><span className="brand-mark">R</span><span>R&amp;D Signal Radar</span></a>
-        <nav aria-label="주요 메뉴"><a className="active" href="#radar">① 신호 레이더</a><a href="#trends">② 키워드 트렌드</a><a href="#generator">③ 기획 후보 생성</a></nav>
-        <button className="outline-button">데이터 기준 <strong>2026.08</strong></button>
+        <nav aria-label="주요 메뉴"><a className="active" href="#radar">① 신호 레이더</a><a href="#trends">② 키워드 트렌드</a><a href="#generator">③ 기획 후보 생성</a><a href="#data">데이터 현황</a></nav>
+        <button className="outline-button">데이터 버전 <strong>{metadata.version}</strong></button>
       </header>
 
       <section className="hero" id="top">
         <div className="eyebrow"><span /> ICT R&amp;D 전략기획 워크벤치</div>
         <h1>흩어진 변화를 읽고,<br /><em>다음 R&amp;D를 설계합니다.</em></h1>
         <p>정책·기술·시장 신호를 한눈에 비교하고<br />신규 사업기획의 근거와 우선순위를 발견하세요.</p>
-        <div className="hero-actions"><a className="primary-button" href="#radar">레이더 살펴보기 <span>↗</span></a><span className="update-note"><i /> 공개 데이터 기반 · 최근 업데이트 8월 18일</span></div>
+        <div className="hero-actions"><a className="primary-button" href="#radar">레이더 살펴보기 <span>↗</span></a><span className="update-note"><i /> {metadata.mode} · 최근 업데이트 {metadata.lastUpdated}</span></div>
+      </section>
+
+      <section className="data-section" id="data">
+        <div className="section-heading"><div><span className="kicker">DATA OPERATIONS</span><h2>데이터 관리 현황</h2></div><p>현재 웹앱은 자동 수집이 아니라 파일을 갱신하는 방식입니다.<br />담당자가 공개자료를 확인하고 데이터 파일에 반영하면 화면이 함께 바뀝니다.</p></div>
+        <div className="data-ops-grid">
+          <div className="data-status">
+            <span className="mini-label">UPDATE POLICY</span>
+            <h3>{metadata.mode}</h3>
+            <dl>
+              <div><dt>갱신 주기</dt><dd>{metadata.updateCycle}</dd></div>
+              <div><dt>저장 위치</dt><dd>{metadata.storage}</dd></div>
+              <div><dt>정리 방식</dt><dd>{metadata.collector}</dd></div>
+              <div><dt>원문 저장</dt><dd>{metadata.rawDocumentStorage}</dd></div>
+            </dl>
+            <p>{metadata.note}</p>
+          </div>
+          <div className="data-totals">
+            <div><span>저장된 출처 그룹</span><strong>{sources.length}</strong><small>개</small></div>
+            <div><span>색인 자료 건수</span><strong>{totalRecords}</strong><small>건</small></div>
+            <div><span>분야 분류</span><strong>{radarData.fields.length}</strong><small>개</small></div>
+            <div><span>관측 신호</span><strong>{signals.length}</strong><small>개</small></div>
+            <div><span>트렌드 키워드</span><strong>{trendData.length}</strong><small>개</small></div>
+            <div><span>데이터 버전</span><strong>{metadata.version}</strong><small>파일</small></div>
+          </div>
+        </div>
+        <div className="source-table">
+          <div className="source-table-head"><span>자료 출처별 보유 현황</span><strong>총 {totalRecords}건 색인</strong></div>
+          <table><thead><tr><th>출처</th><th>자료유형</th><th>건수</th><th>갱신주기</th><th>상태</th></tr></thead><tbody>{sources.map(source => <tr key={source.name}><td>{source.name}</td><td>{source.type}</td><td><strong>{source.records}</strong>건</td><td>{source.updateCycle}</td><td><span>{source.status}</span></td></tr>)}</tbody></table>
+        </div>
       </section>
 
       <section className="overview" id="radar">
         <div className="section-heading"><div><span className="kicker">01 SIGNAL OVERVIEW</span><h2>① 신호 레이더</h2></div><p>초기 버전의 점수와 근거는 화면 구조 검증을 위한 샘플입니다.<br />실제 활용 전 데이터 출처와 산식 검증이 필요합니다.</p></div>
         <div className="stat-strip">
-          <div><span>관측 분야</span><strong>9</strong><small>개</small></div><div><span>이번 달 신규</span><strong>12</strong><small>개</small></div><div><span>상승 신호</span><strong>31</strong><small>개</small></div><div><span>기획 검토 후보</span><strong>9</strong><small>개</small></div>
+          <div><span>관측 분야</span><strong>{radarData.fields.length}</strong><small>개</small></div><div><span>색인 자료</span><strong>{totalRecords}</strong><small>건</small></div><div><span>상승 신호</span><strong>31</strong><small>개</small></div><div><span>기획 검토 후보</span><strong>{signals.length}</strong><small>개</small></div>
         </div>
         <div className="radar-panel">
           <div className="panel-copy"><span className="status-pill">{selected.stage}</span><h3>{selected.name}</h3><p>{selected.summary}</p><Radar signal={selected} /></div>
