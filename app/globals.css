@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root { --ink:#101d32; --paper:#f4f2eb; --line:#d8d5cc; --lime:#c9f04d; --blue:#1f55ff; }
+:root { --ink:#101d32; --paper:#f4f2eb; --line:#d8d5cc; --lime:#c9f04d; --blue:#1f55ff; --font-geist-mono: Consolas, "Courier New", monospace; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial, "Noto Sans KR", sans-serif; }
