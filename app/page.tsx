@@ -52,68 +52,16 @@ export default function Home() {
   return (
     <main>
       <header className="topbar">
-        <a className="brand" href="#top" aria-label="R&D Signal Radar 홈"><span className="brand-mark">R</span><span>R&amp;D Signal Radar</span></a>
-        <nav aria-label="주요 메뉴"><a className="active" href="#radar">① 신호 레이더</a><a href="#trends">② 키워드 트렌드</a><a href="#generator">③ 기획 후보 생성</a><a href="#data">데이터 현황</a></nav>
+        <a className="brand" href="#top" aria-label="IITP ICT R&D Signal Radar 홈"><span className="brand-org">IITP</span><span className="brand-divider" aria-hidden="true">|</span><span>ICT R&amp;D Signal Radar</span></a>
+        <nav aria-label="주요 메뉴"><a className="active" href="#radar">① 신호 레이더</a><a href="#trends">② 키워드 트렌드</a><a href="#generator">③ 기획 후보 생성</a><a href="#data">④ 데이터 현황</a></nav>
         <button className="outline-button">데이터 버전 <strong>{metadata.version}</strong></button>
       </header>
 
       <section className="hero" id="top">
-        <div className="eyebrow"><span /> ICT R&amp;D 전략기획 워크벤치</div>
-        <h1>흩어진 변화를 읽고,<br /><em>다음 R&amp;D를 설계합니다.</em></h1>
+        <div className="eyebrow"><span /> IITP ICT R&amp;D 사업·과제기획 지원도구</div>
+        <h1>신호를 읽고,<br /><em>ICT R&amp;D를 기획합니다.</em></h1>
         <p>정책·기술·시장 신호를 한눈에 비교하고<br />신규 사업기획의 근거와 우선순위를 발견하세요.</p>
         <div className="hero-actions"><a className="primary-button" href="#radar">레이더 살펴보기 <span>↗</span></a><span className="update-note"><i /> {metadata.mode} · 최근 업데이트 {metadata.lastUpdated}</span></div>
-      </section>
-
-      <section className="data-section" id="data">
-        <div className="section-heading"><div><span className="kicker">DATA OPERATIONS</span><h2>데이터 관리 현황</h2></div><p>현재 웹앱은 자동 수집이 아니라 파일을 갱신하는 방식입니다.<br />담당자가 공개자료를 확인하고 데이터 파일에 반영하면 화면이 함께 바뀝니다.</p></div>
-        <div className="data-ops-grid">
-          <div className="data-status">
-            <span className="mini-label">UPDATE POLICY</span>
-            <h3>{metadata.mode}</h3>
-            <dl>
-              <div><dt>갱신 주기</dt><dd>{metadata.updateCycle}</dd></div>
-              <div><dt>저장 위치</dt><dd>{metadata.storage}</dd></div>
-              <div><dt>정리 방식</dt><dd>{metadata.collector}</dd></div>
-              <div><dt>원문 저장</dt><dd>{metadata.rawDocumentStorage}</dd></div>
-            </dl>
-            <p>{metadata.note}</p>
-          </div>
-          <div className="data-totals">
-            <div><span>저장된 출처 그룹</span><strong>{sources.length}</strong><small>개</small></div>
-            <div><span>색인 자료 건수</span><strong>{totalRecords}</strong><small>건</small></div>
-            <div><span>분야 분류</span><strong>{radarData.fields.length}</strong><small>개</small></div>
-            <div><span>관측 신호</span><strong>{signals.length}</strong><small>개</small></div>
-            <div><span>트렌드 키워드</span><strong>{trendData.length}</strong><small>개</small></div>
-            <div><span>데이터 버전</span><strong>{metadata.version}</strong><small>파일</small></div>
-          </div>
-        </div>
-        <div className="local-workflow">
-          <div className="local-paths">
-            <span className="mini-label">LOCAL STORAGE</span>
-            <h3>로컬 자료 저장 위치</h3>
-            <dl>
-              <div><dt>파일 투입</dt><dd>{metadata.inboxPath}</dd></div>
-              <div><dt>원본 보관</dt><dd>{metadata.originalsPath}</dd></div>
-              <div><dt>텍스트 저장</dt><dd>{metadata.parsedPath}</dd></div>
-              <div><dt>문서 목록</dt><dd>{metadata.indexPath}</dd></div>
-            </dl>
-          </div>
-          <div className="workflow-steps">
-            <span className="mini-label">MANUAL INGEST</span>
-            <h3>수동 업데이트 절차</h3>
-            <ol>
-              <li><span>01</span><p>자료 파일을 로컬 `inbox` 폴더에 넣습니다.</p></li>
-              <li><span>02</span><p>로컬 파싱 스크립트를 실행해 원본과 추출 텍스트를 저장합니다.</p></li>
-              <li><span>03</span><p>공개 가능한 요약·키워드·분야만 검토해 웹앱 데이터에 반영합니다.</p></li>
-            </ol>
-            <div className="format-row"><strong>텍스트 추출</strong>{metadata.supportedLocalParsing.map(item => <b key={item}>{item}</b>)}</div>
-            <div className="format-row muted"><strong>원본 보관 우선</strong>{metadata.storedOnlyFormats.map(item => <b key={item}>{item}</b>)}</div>
-          </div>
-        </div>
-        <div className="source-table">
-          <div className="source-table-head"><span>자료 출처별 보유 현황</span><strong>총 {totalRecords}건 색인</strong></div>
-          <table><thead><tr><th>출처</th><th>자료유형</th><th>건수</th><th>갱신주기</th><th>상태</th></tr></thead><tbody>{sources.map(source => <tr key={source.name}><td>{source.name}</td><td>{source.type}</td><td><strong>{source.records}</strong>건</td><td>{source.updateCycle}</td><td><span>{source.status}</span></td></tr>)}</tbody></table>
-        </div>
       </section>
 
       <section className="overview" id="radar">
@@ -175,7 +123,59 @@ export default function Home() {
         </div>
       </section>
 
-      <footer><div className="brand"><span className="brand-mark">R</span><span>R&amp;D Signal Radar</span></div><p>ICT R&amp;D 사업기획을 위한 공개형 탐색 도구 · Prototype v0.1</p><a href="#top">맨 위로 ↑</a></footer>
+      <section className="data-section" id="data">
+        <div className="section-heading"><div><span className="kicker">DATA OPERATIONS</span><h2>데이터 관리 현황</h2></div><p>현재 웹앱은 자동 수집이 아니라 파일을 갱신하는 방식입니다.<br />담당자가 공개자료를 확인하고 데이터 파일에 반영하면 화면이 함께 바뀝니다.</p></div>
+        <div className="data-ops-grid">
+          <div className="data-status">
+            <span className="mini-label">UPDATE POLICY</span>
+            <h3>{metadata.mode}</h3>
+            <dl>
+              <div><dt>갱신 주기</dt><dd>{metadata.updateCycle}</dd></div>
+              <div><dt>저장 위치</dt><dd>{metadata.storage}</dd></div>
+              <div><dt>정리 방식</dt><dd>{metadata.collector}</dd></div>
+              <div><dt>원문 저장</dt><dd>{metadata.rawDocumentStorage}</dd></div>
+            </dl>
+            <p>{metadata.note}</p>
+          </div>
+          <div className="data-totals">
+            <div><span>저장된 출처 그룹</span><strong>{sources.length}</strong><small>개</small></div>
+            <div><span>색인 자료 건수</span><strong>{totalRecords}</strong><small>건</small></div>
+            <div><span>분야 분류</span><strong>{radarData.fields.length}</strong><small>개</small></div>
+            <div><span>관측 신호</span><strong>{signals.length}</strong><small>개</small></div>
+            <div><span>트렌드 키워드</span><strong>{trendData.length}</strong><small>개</small></div>
+            <div><span>데이터 버전</span><strong>{metadata.version}</strong><small>파일</small></div>
+          </div>
+        </div>
+        <div className="local-workflow">
+          <div className="local-paths">
+            <span className="mini-label">LOCAL STORAGE</span>
+            <h3>로컬 자료 저장 위치</h3>
+            <dl>
+              <div><dt>파일 투입</dt><dd>{metadata.inboxPath}</dd></div>
+              <div><dt>원본 보관</dt><dd>{metadata.originalsPath}</dd></div>
+              <div><dt>텍스트 저장</dt><dd>{metadata.parsedPath}</dd></div>
+              <div><dt>문서 목록</dt><dd>{metadata.indexPath}</dd></div>
+            </dl>
+          </div>
+          <div className="workflow-steps">
+            <span className="mini-label">MANUAL INGEST</span>
+            <h3>수동 업데이트 절차</h3>
+            <ol>
+              <li><span>01</span><p>자료 파일을 로컬 `inbox` 폴더에 넣습니다.</p></li>
+              <li><span>02</span><p>로컬 파싱 스크립트를 실행해 원본과 추출 텍스트를 저장합니다.</p></li>
+              <li><span>03</span><p>공개 가능한 요약·키워드·분야만 검토해 웹앱 데이터에 반영합니다.</p></li>
+            </ol>
+            <div className="format-row"><strong>텍스트 추출</strong>{metadata.supportedLocalParsing.map(item => <b key={item}>{item}</b>)}</div>
+            <div className="format-row muted"><strong>원본 보관 우선</strong>{metadata.storedOnlyFormats.map(item => <b key={item}>{item}</b>)}</div>
+          </div>
+        </div>
+        <div className="source-table">
+          <div className="source-table-head"><span>자료 출처별 보유 현황</span><strong>총 {totalRecords}건 색인</strong></div>
+          <table><thead><tr><th>출처</th><th>자료유형</th><th>건수</th><th>갱신주기</th><th>상태</th></tr></thead><tbody>{sources.map(source => <tr key={source.name}><td>{source.name}</td><td>{source.type}</td><td><strong>{source.records}</strong>건</td><td>{source.updateCycle}</td><td><span>{source.status}</span></td></tr>)}</tbody></table>
+        </div>
+      </section>
+
+      <footer><div className="brand"><span className="brand-org">IITP</span><span className="brand-divider" aria-hidden="true">|</span><span>ICT R&amp;D Signal Radar</span></div><p>IITP 사업·과제기획 지원을 위한 내부 탐색 도구 · Prototype v0.1</p><a href="#top">맨 위로 ↑</a></footer>
     </main>
   );
 }
