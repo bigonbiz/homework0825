@@ -65,7 +65,7 @@ export default function Home() {
       </section>
 
       <section className="overview" id="radar">
-        <div className="section-heading"><div><span className="kicker">01 SIGNAL OVERVIEW</span><h2>① 신호 레이더</h2></div><p>초기 버전의 점수와 근거는 화면 구조 검증을 위한 샘플입니다.<br />실제 활용 전 데이터 출처와 산식 검증이 필요합니다.</p></div>
+        <div className="section-heading"><div><span className="kicker">01 SIGNAL OVERVIEW</span><h2>① 신호 레이더</h2></div></div>
         <div className="stat-strip">
           <div><span>관측 분야</span><strong>{radarData.fields.length}</strong><small>개</small></div><div><span>색인 자료</span><strong>{totalRecords}</strong><small>건</small></div><div><span>상승 신호</span><strong>31</strong><small>개</small></div><div><span>기획 검토 후보</span><strong>{signals.length}</strong><small>개</small></div>
         </div>
@@ -86,7 +86,7 @@ export default function Home() {
       </section>
 
       <section className="trends-section" id="trends">
-        <div className="section-heading"><div><span className="kicker">02 KEYWORD MOMENTUM</span><h2>② 키워드 트렌드</h2></div><p>최근 6개월 정책·사업·시장 문서의 상대적 관심도입니다.<br />현재는 동작 검증을 위한 샘플 지수입니다.</p></div>
+        <div className="section-heading"><div><span className="kicker">02 KEYWORD MOMENTUM</span><h2>② 키워드 트렌드</h2></div></div>
         <div className="trend-layout">
           <div className="trend-chart">
             <div className="chart-head"><span>관심도 지수</span><div><i /> 3월 <i /> 8월</div></div>
@@ -98,12 +98,12 @@ export default function Home() {
       </section>
 
       <section className="insights" id="insights">
-        <div className="section-heading light"><div><span className="kicker">PLANNING INSIGHT</span><h2>기획 검토를 시작할 신호</h2></div><p>선택한 신호를 나란히 보고<br />사업화 질문을 구체화합니다.</p></div>
+        <div className="section-heading light"><div><span className="kicker">PLANNING INSIGHT</span><h2>기획 검토를 시작할 신호</h2></div></div>
         <div className="compare-grid">{compare.map(id => { const s=signals.find(item=>item.id===id)!; return <article key={s.id}><button className="remove" onClick={()=>toggleCompare(s.id)} aria-label={`${s.name} 비교에서 제거`}>×</button><span className="card-index">0{s.id}</span><h3>{s.name}</h3><strong className="big-score">{s.score}</strong><div className="mini-bars"><span>정책성 <i><b style={{width:`${s.policy}%`}} /></i>{s.policy}</span><span>시장성 <i><b style={{width:`${s.market}%`}} /></i>{s.market}</span><span>기술격차 <i><b style={{width:`${s.gap}%`}} /></i>{s.gap}</span></div><p>{s.direction}</p></article>})}<article className="question-card"><span className="mini-label">NEXT QUESTION</span><h3>전문가 검토 질문</h3><ul><li>정부 R&amp;D가 개입해야 할 시장실패는 무엇인가?</li><li>기존 사업과 구분되는 임무와 수혜자는 누구인가?</li><li>3~5년 내 검증 가능한 도전적 목표는 무엇인가?</li></ul><button onClick={()=>document.getElementById("signals")?.scrollIntoView()}>다른 신호 선택하기 →</button></article></div>
       </section>
 
       <section className="generator" id="generator">
-        <div className="section-heading"><div><span className="kicker">03 IDEA GENERATOR</span><h2>③ 기획 후보 자동 생성</h2></div><p>선택 신호와 현장 문제를 결합해<br />사전기획 논의용 후보를 만듭니다.</p></div>
+        <div className="section-heading"><div><span className="kicker">03 IDEA GENERATOR</span><h2>③ 기획 후보 자동 생성</h2></div></div>
         <div className="generator-grid">
           <div className="generator-form">
             <label>전략 신호<select value={selectedId} onChange={e=>{setSelectedId(Number(e.target.value));setGenerated(false)}}>{signals.map(s=><option key={s.id} value={s.id}>{s.name} · {s.score}점</option>)}</select></label>
@@ -124,7 +124,7 @@ export default function Home() {
       </section>
 
       <section className="data-section" id="data">
-        <div className="section-heading"><div><span className="kicker">04 DATA OPERATIONS</span><h2>④ 데이터 관리 현황</h2></div><p>현재 웹앱은 자동 수집이 아니라 파일을 갱신하는 방식입니다.<br />담당자가 공개자료를 확인하고 데이터 파일에 반영하면 화면이 함께 바뀝니다.</p></div>
+        <div className="section-heading"><div><span className="kicker">04 DATA OPERATIONS</span><h2>④ 데이터 관리 현황</h2></div></div>
         <div className="data-ops-grid">
           <div className="data-status">
             <span className="mini-label">UPDATE POLICY</span>
