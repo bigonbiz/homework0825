@@ -75,6 +75,16 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="explorer" id="signals">
+        <div className="section-heading"><div><span className="kicker">FIELD TAXONOMY</span><h2>분야별 신호 탐색</h2></div><label className="search"><span>⌕</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="기술·이슈 검색" aria-label="기술·이슈 검색" /></label></div>
+        <div className="filter-row" role="group" aria-label="기술 분야 필터">{fields.map(item => <button className={field === item ? "selected" : ""} onClick={()=>setField(item)} key={item}>{item}</button>)}</div>
+        <div className="table-wrap">
+          <table><thead><tr><th>신호</th><th>분야</th><th>신호 유형</th><th>종합점수</th><th>전월 대비</th><th>단계</th><th><span className="sr-only">비교</span></th></tr></thead>
+          <tbody>{filtered.map(signal => <tr className={selectedId === signal.id ? "current" : ""} key={signal.id} onClick={()=>setSelectedId(signal.id)}><td><button className="signal-name" onClick={()=>setSelectedId(signal.id)}><i style={{background:signal.color}} />{signal.name}</button></td><td>{signal.field}</td><td><span className="type-badge">{signal.type}</span></td><td><strong>{signal.score}</strong></td><td className="up">↑ {signal.change}%</td><td>{signal.stage}</td><td><button className={`compare-button ${compare.includes(signal.id)?"on":""}`} onClick={e=>{e.stopPropagation();toggleCompare(signal.id)}} aria-label={`${signal.name} 비교 ${compare.includes(signal.id)?"해제":"추가"}`}>{compare.includes(signal.id)?"✓":"+"}</button></td></tr>)}</tbody></table>
+          {filtered.length === 0 && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
+        </div>
+      </section>
+
       <section className="trends-section" id="trends">
         <div className="section-heading"><div><span className="kicker">02 KEYWORD MOMENTUM</span><h2>② 키워드 트렌드</h2></div><p>최근 6개월 정책·사업·시장 문서의 상대적 관심도입니다.<br />현재는 동작 검증을 위한 샘플 지수입니다.</p></div>
         <div className="trend-layout">
@@ -84,16 +94,6 @@ export default function Home() {
             <div className="month-axis"><span>3월</span><span>4월</span><span>5월</span><span>6월</span><span>7월</span><span>8월</span></div>
           </div>
           <aside className="trend-summary"><span className="mini-label">FASTEST RISING</span><strong>에이전틱 AI</strong><em>+389%</em><p>정책 언급과 민간 제품 출시가 동시에 증가했습니다. 신뢰성·상호운용성·평가체계를 중심으로 신규 기획 가능성을 검토할 시점입니다.</p><button onClick={()=>{setSelectedId(1);document.getElementById("generator")?.scrollIntoView()}}>이 신호로 기획하기 →</button></aside>
-        </div>
-      </section>
-
-      <section className="explorer" id="signals">
-        <div className="section-heading"><div><span className="kicker">FIELD TAXONOMY</span><h2>분야별 신호 탐색</h2></div><label className="search"><span>⌕</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="기술·이슈 검색" aria-label="기술·이슈 검색" /></label></div>
-        <div className="filter-row" role="group" aria-label="기술 분야 필터">{fields.map(item => <button className={field === item ? "selected" : ""} onClick={()=>setField(item)} key={item}>{item}</button>)}</div>
-        <div className="table-wrap">
-          <table><thead><tr><th>신호</th><th>분야</th><th>신호 유형</th><th>종합점수</th><th>전월 대비</th><th>단계</th><th><span className="sr-only">비교</span></th></tr></thead>
-          <tbody>{filtered.map(signal => <tr className={selectedId === signal.id ? "current" : ""} key={signal.id} onClick={()=>setSelectedId(signal.id)}><td><button className="signal-name" onClick={()=>setSelectedId(signal.id)}><i style={{background:signal.color}} />{signal.name}</button></td><td>{signal.field}</td><td><span className="type-badge">{signal.type}</span></td><td><strong>{signal.score}</strong></td><td className="up">↑ {signal.change}%</td><td>{signal.stage}</td><td><button className={`compare-button ${compare.includes(signal.id)?"on":""}`} onClick={e=>{e.stopPropagation();toggleCompare(signal.id)}} aria-label={`${signal.name} 비교 ${compare.includes(signal.id)?"해제":"추가"}`}>{compare.includes(signal.id)?"✓":"+"}</button></td></tr>)}</tbody></table>
-          {filtered.length === 0 && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
         </div>
       </section>
 
@@ -124,7 +124,7 @@ export default function Home() {
       </section>
 
       <section className="data-section" id="data">
-        <div className="section-heading"><div><span className="kicker">DATA OPERATIONS</span><h2>데이터 관리 현황</h2></div><p>현재 웹앱은 자동 수집이 아니라 파일을 갱신하는 방식입니다.<br />담당자가 공개자료를 확인하고 데이터 파일에 반영하면 화면이 함께 바뀝니다.</p></div>
+        <div className="section-heading"><div><span className="kicker">04 DATA OPERATIONS</span><h2>④ 데이터 관리 현황</h2></div><p>현재 웹앱은 자동 수집이 아니라 파일을 갱신하는 방식입니다.<br />담당자가 공개자료를 확인하고 데이터 파일에 반영하면 화면이 함께 바뀝니다.</p></div>
         <div className="data-ops-grid">
           <div className="data-status">
             <span className="mini-label">UPDATE POLICY</span>
